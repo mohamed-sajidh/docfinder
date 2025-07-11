@@ -12,24 +12,51 @@ class SplashScreen extends GetView<SplashController> {
     controller;
 
     return Scaffold(
-      backgroundColor: AppColors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Align(
-            alignment: Alignment.center,
-            child: Image.asset(AppAssets.logo),
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [AppColors.primary, AppColors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          const Text(
-            "DOCFINDER",
-            style: TextStyle(
-              color: AppColors.black,
-              fontSize: 30,
-              fontWeight: FontWeight.w500,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedOpacity(
+              opacity: 1.0,
+              duration: const Duration(seconds: 1),
+              child: Image.asset(
+                AppAssets.logo,
+                height: 120,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            const Text(
+              "DOCFINDER",
+              style: TextStyle(
+                color: AppColors.black,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Find the right doctor near you",
+              style: TextStyle(
+                color: AppColors.grey,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 40),
+            const CircularProgressIndicator(
+              color: AppColors.primary,
+              strokeWidth: 2.5,
+            ),
+          ],
+        ),
       ),
     );
   }
