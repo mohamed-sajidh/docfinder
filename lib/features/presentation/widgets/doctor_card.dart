@@ -11,7 +11,9 @@ class DoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(AppRoutes.singleDoctorList),
+      onTap: () {
+        Get.toNamed(AppRoutes.singleDoctorList, arguments: doctors.id);
+      },
       child: SizedBox(
         width: double.infinity,
         child: Padding(

@@ -8,4 +8,8 @@ class DoctorRepository {
   Future<List<DoctorEntity>> fetchDoctors() async {
     return await doctorRemoteDataSource.getDoctors();
   }
+
+  Future<DoctorEntity> fetchDoctorsById(String id) async {
+    return await doctorRemoteDataSource.getDoctorsById(id);
+  }
 }

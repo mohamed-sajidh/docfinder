@@ -8,4 +8,10 @@ class DoctorRemoteDataSource {
     final data = await ApiService.get(url);
     return data.map<DoctorModel>((e) => DoctorModel.fromJson(e)).toList();
   }
+
+  Future<DoctorModel> getDoctorsById(String id) async {
+    final url = '${ApiConfig.baseUrl}/api/v1/test/doctors/$id';
+    final data = await ApiService.getById(url);
+    return DoctorModel.fromJson(data);
+  }
 }
