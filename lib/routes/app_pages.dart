@@ -1,3 +1,4 @@
+import 'package:docfinder/features/presentation/bindings/doctor_binding.dart';
 import 'package:docfinder/features/presentation/bindings/splash_binding.dart';
 import 'package:docfinder/features/presentation/pages/doctor_list_page.dart';
 import 'package:docfinder/features/presentation/pages/splash_screen.dart';
@@ -14,6 +15,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.doctorList,
       page: () => const DoctorListPage(),
+      binding: DoctorBinding(),
     ),
   ];
 }
