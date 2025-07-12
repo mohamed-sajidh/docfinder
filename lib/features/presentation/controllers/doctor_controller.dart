@@ -8,6 +8,7 @@ class DoctorController extends GetxController {
   DoctorController(this.repository);
 
   var doctors = <DoctorEntity>[].obs;
+  final allDoctors = <DoctorEntity>[].obs;
   var isLoading = false.obs;
 
   @override
@@ -20,11 +21,22 @@ class DoctorController extends GetxController {
     try {
       isLoading(true);
       final data = await repository.fetchDoctors();
+      allDoctors.value = data;
       doctors.value = data;
     } catch (e) {
       print("e => $e");
     } finally {
       isLoading(false);
     }
+  }
+
+  void filterByGender(String gender) {
+    doctors.value = allDoctors
+        .where((doc) => doc.gender.toLowerCase() == gender.toLowerCase())
+        .toList();
+  }
+
+  void resetFilter() {
+    doctors.value = allDoctors;
   }
 }

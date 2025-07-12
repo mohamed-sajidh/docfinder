@@ -1,6 +1,7 @@
 import 'package:docfinder/core/constants/app_colors.dart';
 import 'package:docfinder/features/presentation/controllers/doctor_controller.dart';
 import 'package:docfinder/features/presentation/widgets/doctor_card.dart';
+import 'package:docfinder/features/presentation/widgets/filter_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,10 +20,15 @@ class _DoctorListPageState extends State<DoctorListPage> {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        leading: const Icon(
-          Icons.format_list_bulleted_sharp,
-          color: AppColors.white,
-          size: 25,
+        leading: GestureDetector(
+          onTap: () {
+            showCustomDialog(context);
+          },
+          child: const Icon(
+            Icons.format_list_bulleted_sharp,
+            color: AppColors.white,
+            size: 25,
+          ),
         ),
         title: const Text(
           "Doctors",
