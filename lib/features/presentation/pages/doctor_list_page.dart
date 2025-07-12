@@ -1,6 +1,8 @@
 import 'package:docfinder/core/constants/app_colors.dart';
+import 'package:docfinder/features/presentation/controllers/doctor_controller.dart';
 import 'package:docfinder/features/presentation/widgets/doctor_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DoctorListPage extends StatefulWidget {
   const DoctorListPage({super.key});
@@ -10,6 +12,7 @@ class DoctorListPage extends StatefulWidget {
 }
 
 class _DoctorListPageState extends State<DoctorListPage> {
+  final DoctorController controller = Get.find<DoctorController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,13 +33,22 @@ class _DoctorListPageState extends State<DoctorListPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: ListView.separated(
-          itemBuilder: (context, index) => const DoctorCard(),
-          separatorBuilder: (context, index) => const Divider(),
-          itemCount: 50,
-        ),
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: ListView.separated(
+              itemBuilder: (context, index) => DoctorCard(
+                doctors: controller.doctors[index],
+              ),
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: controller.doctors.length,
+            ),
+          );
+        },
       ),
     );
   }

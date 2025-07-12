@@ -16,4 +16,5 @@ class DoctorEntity {
     required this.location,
     required this.department,
   });
+
 }
