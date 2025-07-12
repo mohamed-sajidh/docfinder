@@ -1,3 +1,5 @@
+import 'package:docfinder/core/constants/app_colors.dart';
+import 'package:docfinder/features/presentation/widgets/doctor_card.dart';
 import 'package:flutter/material.dart';
 
 class DoctorListPage extends StatefulWidget {
@@ -11,7 +13,31 @@ class _DoctorListPageState extends State<DoctorListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Welcome to Doctor page")),
+      appBar: AppBar(
+        backgroundColor: AppColors.primary,
+        centerTitle: true,
+        leading: const Icon(
+          Icons.format_list_bulleted_sharp,
+          color: AppColors.white,
+          size: 25,
+        ),
+        title: const Text(
+          "Doctors",
+          style: TextStyle(
+            color: AppColors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        child: ListView.separated(
+          itemBuilder: (context, index) => const DoctorCard(),
+          separatorBuilder: (context, index) => const Divider(),
+          itemCount: 50,
+        ),
+      ),
     );
   }
 }
